@@ -96,7 +96,13 @@ To be released as 0.8.0
 
 * Subsets of columns now properly dispatch to the `[` or `[[` method when the column 
   is an object (a vector with a class) instead of making assumptions on how the 
-  column should be handled. The `[` method must handle integer indices, including 
+  column should be handled. 
+  
+  This is relevant to `slice()` and `filter()`, but also to cases when dplyr needs a subset 
+  of a column, e.g. in a `mutate()` or `summarise()` of a grouped data frame, or when 
+  performing joins. 
+  
+  The `[` method must handle integer indices, including 
   `NA_integer_`, i.e. `x[NA_integer_]` should produce a vector of the same class
   as `x` with whatever represents a missing value.  
 
